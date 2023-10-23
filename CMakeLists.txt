@@ -6,4 +6,4 @@ project(
     DESCRIPTION "Source code and libraries that implement the examples from the C++ Software Design Book."
     LANGUAGES CXX)
 
-# add_subdirectory(src)
+add_subdirectory(examples)
