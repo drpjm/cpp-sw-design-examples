@@ -7,7 +7,7 @@ namespace shape {
 
 class Shape {
     /**
-     *  This class is not implemented - it is an interface.
+     *  This class is not implemented - it is an interface to accept visitors.
      */
     public:
         virtual ~Shape() = default;
@@ -35,6 +35,19 @@ class Square : public Shape {
 
     private:
         double side_;
+};
+
+class Rectangle : public Shape {
+    public:
+        explicit Rectangle(double length, double width) : length_ (length), width_ (width) {}
+        
+        void accept( shape_visitor::ShapeVisitor const& sv ) override { sv.visit(*this); }
+        double length() const { return length_; }
+        double width() const { return width_; }
+
+    private:
+        double length_;
+        double width_;
 };
 
 }
