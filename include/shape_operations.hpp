@@ -1,3 +1,6 @@
+#ifndef SHAPE_OPERATIONS_HPP
+#define SHAPE_OPERATIONS_HPP
+
 #include "shape_visitor.hpp"
 #include <iostream>
 
@@ -32,3 +35,5 @@ class Print : public ShapeVisitor{
 };
 
 }
+
+#endif  // SHAPE_OPERATIONS_HPP

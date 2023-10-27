@@ -1,7 +1,7 @@
 #include <vector>
-#include <memory>
-#include "shape_strategy.hpp"
+#include <iostream>
 
+#include "shape_strategy.hpp"
 /**
  * Some fancy aliasing to help a bit!
  **/
@@ -9,4 +9,10 @@
 
 int main(){
 
+    std::cout << "*** Print Strategy Demo ***" << std::endl;
+    using Shapes = std::vector<std::unique_ptr<shape_strategy::Shape>>;
+
+    Shapes shapes {};
+
+    return 0;
 }

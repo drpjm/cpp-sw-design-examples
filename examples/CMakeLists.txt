@@ -18,3 +18,7 @@ target_include_directories(test_shape_strategy
     PRIVATE 
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
 )
+
+target_link_libraries(test_shape_strategy
+  fmt::fmt
+)

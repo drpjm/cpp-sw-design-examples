@@ -1,11 +1,14 @@
 #ifndef SHAPE_STRATEGY_HPP
 #define SHAPE_STRATEGY_HPP
 
+#include <memory>
+#include <utility>
+
 namespace shape_strategy {
 
 class Circle;
-class Square;
-class Rectangle;
+// class Square;
+// class Rectangle;
 
 /**
  *  These abstract strategy classes setup the structure
@@ -14,18 +17,18 @@ class Rectangle;
 class PrintCircleStrategy {
     public:
         virtual ~PrintCircleStrategy() = default;
-        virtual void print( Circle const& circ ) const;
+        virtual void print( Circle const& circ ) const = 0;
 };
-class PrintSquareStrategy {
-    public:
-        virtual ~PrintSquareStrategy() = default;
-        virtual void print( Square const& sq ) const;
-};
-class PrintRectangleStrategy {
-    public:
-        virtual ~PrintRectangleStrategy() = default;
-        virtual void print( Circle const& rect ) const;
-};
+// class PrintSquareStrategy {
+//     public:
+//         virtual ~PrintSquareStrategy() = default;
+//         virtual void print( Square const& sq ) const = 0;
+// };
+// class PrintRectangleStrategy {
+//     public:
+//         virtual ~PrintRectangleStrategy() = default;
+//         virtual void print( Circle const& rect ) const = 0;
+// };
 
 /**
  *  Sets up the highest level abstract interfaces.
@@ -35,6 +38,23 @@ class Shape {
     public:
         virtual ~Shape() = default;
         virtual void print() const = 0;
+};
+
+class Circle : Shape {
+    public:
+        explicit Circle(double radius, std::unique_ptr<PrintCircleStrategy> printer) : radius_ (radius) {}
+        
+        void print() const override {
+            printer_->print( *this );
+        }
+
+        double radius() const {
+            return radius_;
+        }
+
+    private:
+        float radius_;
+        std::unique_ptr<PrintCircleStrategy> printer_;
 };
 
 }
