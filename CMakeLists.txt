@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
+include(dependencies.cmake)
+
 project(
     CppSWDesignExamples 
     VERSION 0.1.0
