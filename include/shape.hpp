@@ -3,7 +3,7 @@
 
 #include "shape_visitor.hpp"
 
-namespace shape {
+namespace shape_visitor {
 
 class Shape {
     /**
