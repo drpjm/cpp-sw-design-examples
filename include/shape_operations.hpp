@@ -1,4 +1,7 @@
-#include "shape.hpp"
+#ifndef SHAPE_OPERATIONS_HPP
+#define SHAPE_OPERATIONS_HPP
+
+#include "shape_visitor.hpp"
 #include <iostream>
 
 /**
@@ -19,16 +22,18 @@ class Print : public ShapeVisitor{
          *  Every type within the Shape hierarchy needs its own visit function!
          *  So, better make sure you have all of your types! 
          **/
-        void visit(shape::Circle const& circ) const override {
+        void visit(shape_visitor::Circle const& circ) const override {
             std::cout << "Circle with r = " << circ.radius() << std::endl;
         }
-        void visit(shape::Square const& sq) const override {
+        void visit(shape_visitor::Square const& sq) const override {
             std::cout << "Square with side = " << sq.side() << std::endl;
         }
-        void visit(shape::Rectangle const& rect) const override {
+        void visit(shape_visitor::Rectangle const& rect) const override {
             std::cout << "Rectangle with length = " << rect.length() << ", width = " << rect.width() << std::endl;
         }
 
 };
 
 }
+
+#endif  // SHAPE_OPERATIONS_HPP
