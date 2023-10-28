@@ -29,12 +29,13 @@ class PrintStrategy {
         virtual void print( ShapeType const& ) const = 0;
 };
 
-class Circle : Shape {
+class Circle : public Shape {
 
     public:
-        explicit Circle(double radius, std::unique_ptr<PrintStrategy<Circle>> printer) {
+        explicit Circle(double radius, std::unique_ptr<PrintStrategy<Circle>> printer) :
+            radius_ (radius), 
+            circ_printer_ ( std::move( printer ) ) {}
 
-        }
         void print(/* stuff one day */) const override {
             circ_printer_->print( *this );
         }
@@ -43,15 +44,6 @@ class Circle : Shape {
         double radius_;
         std::unique_ptr<PrintStrategy<Circle>> circ_printer_;
 
-};
-
-class StdIoPrintCircle : PrintStrategy<Circle>{
-
-    public:
-        explicit StdIoPrintCircle() {}
-        void print( Circle const& circ /* stuff one day */) const override{
-            std::cout << "Radius: " << circ.radius() << std::endl;
-        }
 };
 
 }
