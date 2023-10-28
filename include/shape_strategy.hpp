@@ -46,6 +46,25 @@ class Circle : public Shape {
 
 };
 
+class Square : public Shape {
+
+    public:
+        explicit Square(double side, std::unique_ptr<PrintStrategy<Square>> printer) :
+            side_ (side),
+            sq_printer_ ( std::move(printer ) ) {}
+        
+        void print() const override {
+            sq_printer_->print( *this );
+        }
+    
+        double side() const { return side_; }
+
+    private:
+        double side_;
+        std::unique_ptr<PrintStrategy<Square>> sq_printer_;
+
+};
+
 }
 
 #endif  // SHAPE_STRATEGY_HPP

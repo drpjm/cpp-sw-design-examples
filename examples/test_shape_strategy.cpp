@@ -22,6 +22,18 @@ int main(){
             std::make_unique<shape_strategy::FmtPrintCircle>()
         )
     );
+    shapes.emplace_back(
+        std::make_unique<shape_strategy::Square>(
+            4.0,
+            std::make_unique<shape_strategy::StdIoPrintSquare>()
+        )
+    );
+    shapes.emplace_back(
+        std::make_unique<shape_strategy::Square>(
+            3.5,
+            std::make_unique<shape_strategy::FmtPrintSquare>()
+        )
+    );
 
     for (auto const& shape : shapes){
         shape->print();

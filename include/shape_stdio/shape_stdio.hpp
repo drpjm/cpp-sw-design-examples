@@ -15,6 +15,15 @@ class StdIoPrintCircle : public PrintStrategy<Circle>{
         }
 };
 
+class StdIoPrintSquare : public PrintStrategy<Square>{
+
+    public:
+        explicit StdIoPrintSquare() {}
+        void print( Square const& sq /* stuff one day */) const override{
+            std::cout << "StdIoPrintCircle:Side: " << sq.side() << std::endl;
+        }
+};
+
 }
 
 #endif  // SHAPE_STDIO_HPP

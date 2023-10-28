@@ -16,6 +16,16 @@ class FmtPrintCircle : public PrintStrategy<Circle>{
         }
 };
 
+class FmtPrintSquare : public PrintStrategy<Square> {
+
+    public:
+        explicit FmtPrintSquare() {}
+
+        void print( Square const& sq /* stuff one day */ ) const override {
+            fmt::print("FmtPrintCircle:Side: {side}\n", fmt::arg("side", sq.side()));
+        }
+};
+
 }
 
 #endif  // SHAPE_FMT_HPP
