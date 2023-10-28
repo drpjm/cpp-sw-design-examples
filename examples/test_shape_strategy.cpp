@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "shape_stdio/shape_stdio.hpp"
-// #include "shape_fmt/shape_fmt.hpp"
+#include "shape_fmt/shape_fmt.hpp"
 
 int main(){
 
@@ -14,6 +14,12 @@ int main(){
         std::make_unique<shape_strategy::Circle>(
             2.3, 
             std::make_unique<shape_strategy::StdIoPrintCircle>()
+        )
+    );
+    shapes.emplace_back(
+        std::make_unique<shape_strategy::Circle>(
+            1.5,
+            std::make_unique<shape_strategy::FmtPrintCircle>()
         )
     );
 
