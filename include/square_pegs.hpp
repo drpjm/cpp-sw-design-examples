@@ -5,11 +5,12 @@ namespace square_pegs {
 
 class SquarePeg {
 
-    explicit SquarePeg(float side_length) : side_length_ (side_length) {}
+    public:
+        explicit SquarePeg(float side_length) : side_length_ (side_length) {}
 
-    float get_side_length() const {
-        return side_length_;
-    }
+        float get_side_length() const {
+            return side_length_;
+        }
 
     private:
         float side_length_;
