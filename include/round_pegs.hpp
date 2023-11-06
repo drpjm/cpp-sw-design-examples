@@ -10,9 +10,15 @@ namespace round_pegs {
 
 class RoundPeg {
     public:
-        RoundPeg(float radius) : radius_ (radius) {}
+        virtual ~RoundPeg() = default;
+        virtual float get_radius() const = 0;
+};
 
-        float get_radius() const {
+class CirclePeg : public RoundPeg {
+    public:
+        explicit CirclePeg(float radius) : radius_ (radius) {}
+
+        float get_radius() const override {
             return radius_;
         }
 
@@ -29,7 +35,7 @@ class RoundHole {
             return radius_;
         }
 
-        bool fits(RoundPeg peg){
+        bool fits(RoundPeg const& peg){
             if(peg.get_radius() <= radius_) {
                 return true;
             }
@@ -40,7 +46,6 @@ class RoundHole {
 
     private:
         float radius_;
-
 };
 
 }

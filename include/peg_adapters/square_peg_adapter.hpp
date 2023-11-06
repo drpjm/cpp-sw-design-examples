@@ -10,7 +10,6 @@ class SquarePegAdapter : public RoundPeg {
 
     private:
         square_pegs::SquarePeg square_peg_;
-
 };
 
 }
