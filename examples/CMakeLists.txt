@@ -38,3 +38,7 @@ target_include_directories(test_observer
 target_link_libraries(test_shape_strategy
   fmt::fmt
 )
+
+target_link_libraries(test_observer
+  spdlog::spdlog
+)

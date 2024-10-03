@@ -2,8 +2,8 @@
 #include <chrono>
 #include <thread>
 
+#include "spdlog/spdlog.h"
 #include "observer/robot.hpp"
-#include "observer/subs.hpp"
 
 int main(){
 
@@ -13,6 +13,7 @@ int main(){
     for (int i = 0; i < max_iter; i++){
         std::this_thread::sleep_for(std::chrono::seconds(1));
         isadora.change_behavior();
+        spdlog::info("Sending notifications to observers!");
         isadora.notify();
     }
 
