@@ -10,43 +10,38 @@
 
 namespace robot {
 
-struct BehaviorMessage
-{
-    int stamp;
-    std::string behavior;
-};
-
-using BehaviorObserver = obsv::PushObserver<BehaviorMessage>;
-
 class Robot {
 
     public:
-        explicit Robot(int id, float x, float y, std::string behavior) : 
-            id_ (id), curr_x_ (x), curr_y_ (y), curr_behavior_ (behavior) {}
+        explicit Robot(int id, float x, float y) : 
+            id_ (id), curr_x_ (x), curr_y_ (y) {
+                curr_behavior_ = behavior_types_[0]; 
+            }
 
-        bool subscribe(BehaviorObserver* obsv){
+        bool subscribe(obsv::RobotBehaviorObserver* rob_obsv){
             // Structured binding
-            auto [pos, success] = observers_.insert(obsv);
+            auto [pos, success] = observers_.insert(rob_obsv);
             return success;
         }
 
-        bool unsubscribe(BehaviorObserver* obsv){
-            return ( observers_.erase( obsv ) > 0U );
+        bool unsubscribe(obsv::RobotBehaviorObserver* rob_obsv){
+            return ( observers_.erase( rob_obsv ) > 0U );
         }
 
         void notify(){
             for( auto it = begin(observers_); it != end(observers_); ){
                 auto const pos = it++;
-                (*pos)->update( BehaviorMessage{0, curr_behavior_} );
+                (*pos)->update( obsv::BehaviorMessage{0, curr_behavior_} );
             }
         }
 
         void change_behavior(){
-            behavior_idx_++;
-            if (behavior_idx_ > behavior_types_.size()) {
+            if (behavior_idx_ >= behavior_types_.size()) {
                 behavior_idx_ = 0;
             }
             curr_behavior_ = behavior_types_[behavior_idx_];
+            behavior_idx_++;
+            spdlog::debug("behavior_idx = {}", behavior_idx_);
         }
 
     private:
@@ -54,7 +49,7 @@ class Robot {
         float curr_x_;
         float curr_y_;
         int id_;
-        std::set<BehaviorObserver*> observers_;
+        std::set<obsv::RobotBehaviorObserver*> observers_;
         int behavior_idx_ {0};
         std::vector<std::string> behavior_types_ {"idle", "dancing", "driving"};
 
