@@ -21,6 +21,22 @@ constexpr Out fold(Fn function, In* input_data, size_t length, Out init_val){
     return result;
 }
 
+struct CountIf
+{
+    CountIf(char x) : x_ { x } {};
+    size_t operator()(const char* str){
+        size_t index {};
+        size_t result {}; 
+        while(str[index]){
+            if (str[index] == x_) result++;
+            index++;
+        }
+        return result;
+    }
+    private:
+        const char x_;
+};
+
 }
 
 #endif
