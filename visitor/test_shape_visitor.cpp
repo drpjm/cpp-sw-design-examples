@@ -20,11 +20,14 @@ int main(){
     shapes.emplace_back( std::make_unique<shape_visitor::Square>(square2) );
 
     // Modern c++ for loop!
+    shape_visitor::Print print_visitor {};
+    shape_visitor::Area area_visitor {};
+    
     for (auto const& shape : shapes) {
         /**
          *  We invoke the visitor by calling accept() and passing the operation! 
          **/
-        shape->accept( shape_visitor::Print{} );
+        shape->accept( print_visitor );
     }
 
 }
