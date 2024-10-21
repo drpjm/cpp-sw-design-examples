@@ -25,7 +25,7 @@ class FunRobotBehaviorObserver : public RobotBehaviorObserver {
         explicit FunRobotBehaviorObserver(std::string id) : id_ (id) {};
 
         void update(BehaviorMessage const& msg) override {
-            spdlog::info("I'm fun #{0} - stamp={1}, behavior={2}", id_,  msg.stamp, msg.behavior);
+            spdlog::info("I'm {0} - stamp={1}, behavior={2}", id_,  msg.stamp, msg.behavior);
         }
 
     private:
