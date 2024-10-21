@@ -15,7 +15,7 @@ namespace shape_visitor {
  *  Each new operation we want, we extend ShapeVisitor and implement
  *  what the visitor performs using the visit function. 
  **/
-class Print : public ShapeVisitor{
+class Print : public ShapeVisitor {
 
     public:
         /**
@@ -32,6 +32,23 @@ class Print : public ShapeVisitor{
             std::cout << "Rectangle with length = " << rect.length() << ", width = " << rect.width() << std::endl;
         }
 
+};
+
+class Area : public ShapeVisitor {
+
+    public:
+        /**
+         * This is another visitor type - computes the area of each entity that will be visited.
+         */
+        void visit(shape_visitor::Circle const& circ) const override {
+            return;
+        }
+        void visit(shape_visitor::Square const& sq) const override {
+            return;
+        }
+        void visit(shape_visitor::Rectangle const& rect) const override {
+            return;
+        }
 };
 
 }

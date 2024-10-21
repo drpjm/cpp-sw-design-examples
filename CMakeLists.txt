@@ -9,3 +9,4 @@ project(
     LANGUAGES CXX)
 
 add_subdirectory(examples)
+add_subdirectory(visitor)
