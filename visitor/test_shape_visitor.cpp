@@ -1,4 +1,4 @@
-#include "shape_operations.hpp"
+#include "visitor/shape_operations.hpp"
 #include <vector>
 #include <memory>
 
@@ -20,14 +20,15 @@ int main(){
     shapes.emplace_back( std::make_unique<shape_visitor::Square>(square2) );
 
     // Modern c++ for loop!
-    shape_visitor::Print print_visitor {};
     shape_visitor::Area area_visitor {};
+    shape_visitor::Perimeter perim_visitor {};
     
     for (auto const& shape : shapes) {
         /**
          *  We invoke the visitor by calling accept() and passing the operation! 
          **/
-        shape->accept( print_visitor );
+        shape->accept( area_visitor );
+        shape->accept( perim_visitor );
     }
 
 }
