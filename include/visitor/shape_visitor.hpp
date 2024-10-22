@@ -22,9 +22,9 @@ class ShapeVisitor {
          *  The ShapeVisitor base class must know about all of the
          *  types in advance. 
          **/
-        virtual void visit( Circle const& ) const = 0;
-        virtual void visit( Square const& ) const = 0;
-        virtual void visit( Rectangle const& ) const = 0;
+        virtual void visit( Circle const& )  = 0;
+        virtual void visit( Square const& )  = 0;
+        virtual void visit( Rectangle const& )  = 0;
 };
 
 class Shape {
@@ -33,7 +33,7 @@ class Shape {
      */
     public:
         virtual ~Shape() = default;
-        virtual void accept( shape_visitor::ShapeVisitor const& sv ) = 0;
+        virtual void accept( shape_visitor::ShapeVisitor& sv ) = 0;
 };
 
 class Circle : public Shape
@@ -41,7 +41,7 @@ class Circle : public Shape
     public:
         explicit Circle( double radius ) : radius_( radius ) {}
         
-        void accept( shape_visitor::ShapeVisitor const& sv ) override { sv.visit(*this); } 
+        void accept( shape_visitor::ShapeVisitor& sv ) override { sv.visit(*this); } 
         double radius() const { return radius_; }
 
     private:
@@ -52,7 +52,7 @@ class Square : public Shape {
     public:
         explicit Square( double side ) : side_ (side) {}
 
-        void accept( shape_visitor::ShapeVisitor const& sv ) override { sv.visit(*this); }
+        void accept( shape_visitor::ShapeVisitor& sv ) override { sv.visit(*this); }
         double side() const { return side_; }
 
     private:
@@ -63,7 +63,7 @@ class Rectangle : public Shape {
     public:
         explicit Rectangle(double length, double width) : length_ (length), width_ (width) {}
         
-        void accept( shape_visitor::ShapeVisitor const& sv ) override { sv.visit(*this); }
+        void accept( shape_visitor::ShapeVisitor& sv ) override { sv.visit(*this); }
         double length() const { return length_; }
         double width() const { return width_; }
 

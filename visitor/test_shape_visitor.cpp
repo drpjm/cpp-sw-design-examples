@@ -28,7 +28,9 @@ int main(){
          *  We invoke the visitor by calling accept() and passing the operation! 
          **/
         shape->accept( area_visitor );
+        std::cout << "Area: " << area_visitor.get_value() << std::endl;
         shape->accept( perim_visitor );
+        std::cout << "Perimeter: " << perim_visitor.get_value() << std::endl;
     }
 
 }

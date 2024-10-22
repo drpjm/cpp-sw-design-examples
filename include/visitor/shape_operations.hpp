@@ -20,22 +20,23 @@ class Area : public ShapeVisitor {
         /**
          * This visitor type computes the area of each entity that will be visited.
          */
-        void visit(shape_visitor::Circle const& circ) const override {
-            auto area = PI * std::pow(circ.radius(), 2);
-            std::cout << "Area Circle: " << area << std::endl;
+        void visit(shape_visitor::Circle const& circ)  override {
+            value_ = PI * std::pow(circ.radius(), 2);
             return;
         }
-        void visit(shape_visitor::Square const& sq) const override {
-            auto area = sq.side() * sq.side();
-            std::cout << "Area Square: " << area << std::endl;
+        void visit(shape_visitor::Square const& sq)  override {
+            value_ = sq.side() * sq.side();
             return;
         }
-        void visit(shape_visitor::Rectangle const& rect) const override {
-            auto area = rect.length() * rect.width();
-            std::cout << "Area Rectangle: " << area << std::endl;
+        void visit(shape_visitor::Rectangle const& rect)  override {
+            value_ = rect.length() * rect.width();
             return;
         }
-
+        float get_value() const {
+            return value_;
+        }
+    private:
+        float value_;
 };
 
 class Perimeter : public ShapeVisitor {
@@ -44,21 +45,23 @@ class Perimeter : public ShapeVisitor {
         /**
          * This visitor computes the perimeter of the given shape.
          */
-        void visit(shape_visitor::Circle const& circ) const override {
-            auto perim = 2 * PI * circ.radius();
-            std::cout << "Perimeter Circle: " << perim << std::endl;
+        void visit(shape_visitor::Circle const& circ)  override {
+            value_ = 2 * PI * circ.radius();
             return;
         }
-        void visit(shape_visitor::Square const& sq) const override {
-            auto perim = 4 * sq.side();
-            std::cout << "Perimeter Square: " << perim << std::endl;
+        void visit(shape_visitor::Square const& sq)  override {
+            value_ = 4 * sq.side();
             return;
         }
-        void visit(shape_visitor::Rectangle const& rect) const override {
-            auto perim = 2 * rect.length() + 2 * rect.width();
-            std::cout << "Perimeter Rectangle: " << perim << std::endl;
+        void visit(shape_visitor::Rectangle const& rect)  override {
+            value_ = 2 * rect.length() + 2 * rect.width();
             return;
         }
+        float get_value() const {
+            return value_;
+        }
+    private:
+        float value_;
 
 };
 
