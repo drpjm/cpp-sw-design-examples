@@ -5,9 +5,18 @@ add_executable(test_shape_visitor
 
 target_compile_features(test_shape_visitor PRIVATE cxx_std_20)
 
+add_executable(test_shape_visitor_variant
+    test_shape_visitor_variant.cpp
+)
 
-# Given my current folder structure, I need to provide where the include files are for the target
+target_compile_features(test_shape_visitor_variant PRIVATE cxx_std_20)
+
+
 target_include_directories(test_shape_visitor 
+    PRIVATE 
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+)
+target_include_directories(test_shape_visitor_variant 
     PRIVATE 
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
 )
